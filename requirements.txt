@@ -1,0 +1,11 @@
+numpy
+spatialmath-python
+scipy
+ur_rtde
+pyserial
+pybind11
+setuptools
+wheel
+urdf-parser-py
+sympy
+roboticstoolbox-python
