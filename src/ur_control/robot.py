@@ -9,7 +9,7 @@ import spatialmath.base as spmb
 import PyKDL as kdl
 
 from ur_control.state import RobotState
-from kdl_parser.kdl_parser_py.kdl_parser_py import urdf
+from kdl_parser_py import urdf
 
 
 class UniversalRobot:
