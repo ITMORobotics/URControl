@@ -17,6 +17,6 @@ print(JOINTS)
 
 median = md.MedianFilter(NUM_JOINTS, 16)
 
-robot_ip = os.getenv('MONGODB_HOST', '192.168.88.6')
-robot= ur_control.UniversalRobot('MONGODB_HOST')
+robot_ip = os.getenv('ROBOT_IP', '192.168.88.6')
+robot= ur_control.UniversalRobot(robot_ip)
 robot.control.moveJ(JOINTS)
