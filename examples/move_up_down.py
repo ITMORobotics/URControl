@@ -15,6 +15,7 @@ TOOL = 'tool0'
 NUM_JOINTS = 6
 
 CONTROL_LOOP_DT = 1.0/100 # 100 hz
+ACCELERATION = 0.5
 
 JOINTS  = np.array([np.pi/2, -np.pi/2 + np.pi/6 - 0.2, -np.pi/2, -np.pi/2 - np.pi/6 + 0.2, np.pi/2, 0])
 print(JOINTS)
@@ -24,8 +25,6 @@ median = md.MedianFilter(NUM_JOINTS, 16)
 robot_ip = os.getenv('ROBOT_IP', '192.168.88.6')
 robot= ur_control.UniversalRobot(robot_ip)
 robot_model = ur_control.RobotModel('ur5e_fc.urdf', BASE, TOOL)
-
-robot.control.moveJ(JOINTS)
 
 def ee_local_velocity_2_joint_velocity(ee_vel: np.ndarray):
     ee_base_bel = np.kron(
@@ -38,10 +37,11 @@ def ee_local_velocity_2_joint_velocity(ee_vel: np.ndarray):
 
 
 if __name__ == '__main__':
-    ACCELERATION = 0.5
+    robot.control.moveJ(JOINTS)
+    time.sleep(1.0)
 
     start_time = time.time()
-    while time.time()-start_time < 50.0:
+    while time.time()-start_time < 10.0:
         start_loop_time = time.time()
 
         action = np.zeros(6)
