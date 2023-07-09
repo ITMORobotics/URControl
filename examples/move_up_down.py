@@ -31,7 +31,7 @@ def ee_local_velocity_2_joint_velocity(ee_vel: np.ndarray):
             np.eye(2),
             robot_model.rot(robot.state.q)
     ) @ ee_vel
-    joint_velocities = np.linalg.pinv(robot.jacobian(robot.state.q)) @ ee_base_bel
+    joint_velocities = np.linalg.pinv(robot_model.jacobian(robot.state.q)) @ ee_base_bel
 
     return joint_velocities
 
